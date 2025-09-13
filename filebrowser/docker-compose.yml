@@ -1,0 +1,13 @@
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    ports:
+      - "8000:80"
+    volumes:
+      - ${FILES_ROOT:?error}:/srv:ro
+      - ./database.db:/database.db
+    command: >
+      --root=/srv
+      --noauth
+    restart: unless-stopped
